@@ -9,7 +9,4 @@ class GameObject {
 
         });
     }
-    update() {
-
-    }
 }
