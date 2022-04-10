@@ -23,17 +23,15 @@ class Overworld {
         this.startGame();
     }
 
-    
-
     async startGame() {
-        await this.Naruto.moveRight(1);
-        await this.Naruto.moveDown(3); 
-        await this.Naruto.moveUp(2); 
-        await this.Naruto.moveLeft(1);
+        await this.Naruto.moveDown(3);
+        await this.Naruto.moveRight(4);
+        await this.Naruto.moveLeft(2);
+        await this.Naruto.moveUp(2);
 
-        await this.Sasuke.moveDown(3);
+        await this.Sakura.moveRight(1);
+        await this.Sakura.moveLeft(1);
 
-        await this.Sakura.moveUp(1);
     }
 }
 

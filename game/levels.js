@@ -17,7 +17,10 @@ window.OverworldMaps = {
                 y: utils.widthGrid(0),
                 src: "/images/Sasuke.png"
             })
-        }
+        },
+        walls: [
+            [1, 1], [2, 1], [3, 1], [1, 2], [3, 2], [1, 3], [2, 3], [3, 3]
+        ]
     },
     lev2: {
 
