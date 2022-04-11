@@ -4,18 +4,18 @@ window.OverworldMaps = {
         gameObjects: {
             naruto: new Naruto({
                 x: utils.widthGrid(0),
-                y: utils.widthGrid(1),
-                src: "/images/Naruto.png",
+                y: utils.widthGrid(4),
+                src: "/images/naruto_act.png",
             }),
             sakura: new Sakura({
                 x: utils.widthGrid(3),
                 y: utils.widthGrid(3),
-                src: "/images/Sakura.png"
+                src: "/images/sakura_act.png"
             }),
             sasuke: new Sasuke({
                 x: utils.widthGrid(4),
                 y: utils.widthGrid(0),
-                src: "/images/Sasuke.png"
+                src: "/images/sasuke_act.png"
             })
         },
         walls: [

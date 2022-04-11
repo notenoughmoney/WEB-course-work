@@ -16,11 +16,10 @@ class Person extends GameObject {
             overworld.another();
             await this.timeout(this.speed);
         }
+        this.sprite.moveRightAnimation(c); //асинхронная
         for (let i = 0; i < c * 32; i ++) {
             //с каждой прошедшей клектой проверяем стенки
             if (i % 32 == 0) {
-                console.log(this.getNextPos("right"));
-                console.log(window.OverworldMaps.lev1.walls);
                 if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("right")))) {
                     console.log("Занято!");
                     break;
@@ -37,10 +36,9 @@ class Person extends GameObject {
             overworld.another();
             await this.timeout(this.speed);
         }
+        this.sprite.moveLeftAnimation(c); //асинхронная
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
-                console.log(this.getNextPos("left"));
-                console.log(window.OverworldMaps.lev1.walls);
                 if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("left")))) {
                     console.log("Занято!");
                     break;
@@ -57,10 +55,10 @@ class Person extends GameObject {
             overworld.another();
             await this.timeout(this.speed);
         }
+        if (this.sprite.currentDir == "right") this.sprite.moveRightAnimation(c);
+        else this.sprite.moveLeftAnimation(c);
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
-                console.log(this.getNextPos("up"));
-                console.log(window.OverworldMaps.lev1.walls);
                 if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("up")))) {
                     console.log("Занято!");
                     break;
@@ -77,10 +75,10 @@ class Person extends GameObject {
             overworld.another();
             await this.timeout(this.speed);
         }
+        if (this.sprite.currentDir == "right") this.sprite.moveRightAnimation(c);
+        else this.sprite.moveLeftAnimation(c);
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
-                console.log(this.getNextPos("down"));
-                console.log(window.OverworldMaps.lev1.walls);
                 if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("down")))) {
                     console.log("Занято!");
                     break;
