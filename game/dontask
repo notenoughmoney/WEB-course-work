@@ -1,0 +1,6 @@
+/*
+await this.map.startCutscene([
+    {type: "textMessage", text: "Привет!"}
+    {type: "textMessage", text: "В этой игре тебе предстоит управлять Наруто!"}
+]);
+*/

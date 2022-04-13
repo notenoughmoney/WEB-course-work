@@ -9,5 +9,19 @@ class OverworldMap {
     drawLowerImage(ctx) {
         ctx.drawImage(this.lowerImage, 0, 0);
     }
+
+    async startCutscene(events) {
+        this.isCutscenePlaying = true;
+    
+        for (let i=0; i<events.length; i++) {
+          const eventHandler = new OverworldEvent({
+            event: events[i],
+            map: this,
+          })
+          await eventHandler.init();
+        }
+    
+        this.isCutscenePlaying = false;
+    }
 }
 

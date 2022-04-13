@@ -36,6 +36,25 @@ class Sprite {
                 [200, 200, 50, 50],
                 [250, 200, 50, 50]
             ], 
+            hitright: [
+                [0, 100, 50, 50],
+                [50, 100, 50, 50],
+                [100, 100, 50, 50]
+            ], 
+            hitleft: [
+                [0, 250, 50, 50],
+                [50, 250, 50, 50],
+                [100, 250, 50, 50]
+            ],
+            spawn: [
+                [0, 0, 50, 50],
+                [50, 0, 50, 50],
+                [100, 0, 50, 50],
+                [150, 0, 50, 50],
+                [100, 0, 50, 50],
+                [50, 0, 50, 50],
+                [0, 0, 50, 50]
+            ],
             stayright: [0, 0, 50, 50],
             stayleft: [0, 150, 50, 50]
         }
@@ -45,13 +64,13 @@ class Sprite {
 
         //Reference to game object
         this.gameObject = config.gameObject;
+
     }
 
 
     ////////// RIGHT //////////
     nextFrameRight(frameN) {
         this.frame = this.animations.walkright[frameN];
-        console.log(this.frame);
     }
     moveRightAnimation(c) {
         let frameN = 0;
@@ -75,7 +94,6 @@ class Sprite {
     ////////// LEFT //////////
     nextFrameLeft(frameN) {
         this.frame = this.animations.walkleft[frameN];
-        console.log(this.frame);
     }
     moveLeftAnimation(c) {
         let frameN = 0;
@@ -94,6 +112,64 @@ class Sprite {
             }
         }, 20);
         this.currentDir = "left";
+    }
+
+    timeout(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    nextHitRight(frameN) {
+        this.frame = this.animations.hitright[frameN];
+    }
+    async hitRightAnimation(c) {
+        for (let i = 0; i < c; i++) {
+            let frameN = 0;
+            for (let j = 0; j < 3; j++) {
+                this.nextHitRight(frameN);
+                overworld.another();
+                frameN++;
+                await this.timeout(150);
+            }
+        }
+    }
+
+    nextHitLeft(frameN) {
+        this.frame = this.animations.hitleft[frameN];
+    }
+    async hitLeftAnimation(c) {
+        for (let i = 0; i < c; i++) {
+            let frameN = 0;
+            for (let j = 0; j < 3; j++) {
+                this.nextHitLeft(frameN);
+                overworld.another();
+                frameN++;
+                await this.timeout(150);
+            }
+        }
+    }
+
+    nextSpawn(frameN) {
+        this.frame = this.animations.spawn[frameN];
+    }
+    async spawnMovement(c) {
+        for (let i = 0; i < c; i++) {
+            let frameN = 0;
+            for (let j = 0; j < 7; j++) {
+                this.nextSpawn(frameN);
+                overworld.another();
+                frameN++;
+                await this.timeout(80);
+            }
+        }
+    }
+
+
+    //после каждого мувмента приводми челиков в начальную стойку
+    stayPosRight() {
+        this.frame = this.animations.stayright;
+    }
+    stayPosLeft() {
+        this.frame = this.animations.stayleft;
     }
 
     draw(ctx) {

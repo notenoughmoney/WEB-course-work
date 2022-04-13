@@ -10,7 +10,9 @@ class Person extends GameObject {
     counter = 0;
     speed = 20;
 
-    async moveRight(c) {
+
+    //движения
+    async moveRight(c = 1) {
         const step = async () => {
             this.x += 1;
             overworld.another();
@@ -29,8 +31,10 @@ class Person extends GameObject {
             } else 
                 await step();
         }
+        this.sprite.stayPosRight();
+        overworld.another();
     }
-    async moveLeft(c) {
+    async moveLeft(c = 1) {
         const step = async () => {
             this.x -= 1;
             overworld.another();
@@ -48,8 +52,10 @@ class Person extends GameObject {
             } else 
                 await step();
         }
+        this.sprite.stayPosLeft();
+        overworld.another();
     }
-    async moveUp(c) {
+    async moveUp(c = 1) {
         const step = async () => {
             this.y -= 1;
             overworld.another();
@@ -68,8 +74,11 @@ class Person extends GameObject {
             } else 
                 await step();
         }
+        if (this.sprite.currentDir == "right") this.sprite.stayPosRight(c);
+        else this.sprite.stayPosLeft(c);
+        overworld.another();
     }
-    async moveDown(c) {
+    async moveDown(c = 1) {
         const step = async () => {
             this.y += 1;
             overworld.another();
@@ -88,5 +97,24 @@ class Person extends GameObject {
             } else 
                 await step();
         }
+        if (this.sprite.currentDir == "right") this.sprite.stayPosRight(c);
+        else this.sprite.stayPosLeft(c);
+        overworld.another();
     }
+    //удары
+    async hitRight(c = 1) {
+        await this.sprite.hitRightAnimation(c);
+        this.sprite.stayPosRight();
+        overworld.another();
+    }
+    async hitLeft(c = 1) {
+        await this.sprite.hitLeftAnimation(c);
+        this.sprite.stayPosLeft();
+        overworld.another();
+    }
+    //спавн
+    async spawnMovement(c = 1) {
+        await this.sprite.spawnMovement(c);
+    }
+
 }

@@ -23,24 +23,18 @@ class Overworld {
         this.startGame();
     }
 
+    async team7Spawn() {
+        this.Naruto.spawnMovement(2);
+        this.Sakura.spawnMovement(2);
+        this.Sasuke.spawnMovement(2);
+    }
+
     async startGame() {
-        /*
+
         await this.Naruto.moveRight(4);
-        await this.Naruto.moveUp(4);
-        await this.Naruto.moveLeft(4);
-        await this.Naruto.moveDown(4);
-        */
-
-        /*
         await this.Sakura.moveDown(1);
-        await this.Sakura.moveLeft(3);
-        await this.Sakura.moveUp(4);
-        await this.Sakura.moveRight(4);
-        */
-
-        await this.Sasuke.moveDown(4);
-        await this.Sasuke.moveLeft(4);
-        await this.Sasuke.moveUp(3);
+        await this.Sasuke.moveUp(2);
+        
     }
 }
 

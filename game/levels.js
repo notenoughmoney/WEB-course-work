@@ -14,7 +14,7 @@ window.OverworldMaps = {
             }),
             sasuke: new Sasuke({
                 x: utils.widthGrid(4),
-                y: utils.widthGrid(0),
+                y: utils.widthGrid(2),
                 src: "/images/sasuke_act.png"
             })
         },
