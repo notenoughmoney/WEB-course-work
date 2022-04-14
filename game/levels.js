@@ -9,7 +9,7 @@ window.OverworldMaps = {
             }),
             sakura: new Sakura({
                 x: utils.widthGrid(3),
-                y: utils.widthGrid(3),
+                y: utils.widthGrid(4),
                 src: "/images/sakura_act.png"
             }),
             sasuke: new Sasuke({

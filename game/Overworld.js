@@ -6,6 +6,22 @@ class Overworld {
         
     }
 
+    //получаем занятые персонажами клетки
+    getOccupiedCells() {
+        return [
+            [this.Naruto.x/32, this.Naruto.y/32],
+            (this.Sakura == undefined) ? null : [this.Sakura.x/32, this.Sakura.y/32],
+            (this.Sasuke == undefined) ? null : [this.Sasuke.x/32, this.Sasuke.y/32], 
+            //и другие
+        ];
+    }
+
+    //на какой карте происходит действие
+    getMap() {
+        return this.map;
+    }
+
+    //отрисовка
     another() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.map.drawLowerImage(this.ctx);
@@ -31,9 +47,14 @@ class Overworld {
 
     async startGame() {
 
-        await this.Naruto.moveRight(4);
-        await this.Sakura.moveDown(1);
-        await this.Sasuke.moveUp(2);
+        this.team7Spawn();
+
+        // await this.Naruto.moveRight(4);
+        // await this.Sakura.moveDown(1);
+        // await this.Sasuke.moveUp(2);
+        
+
+
         
     }
 }

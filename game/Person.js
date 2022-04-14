@@ -10,6 +10,33 @@ class Person extends GameObject {
     counter = 0;
     speed = 20;
 
+    //возвращаем следующую позицию персонажа в клетках
+    getNextPos(dir) {
+        if(dir == "up") 
+            return [this.x/32, this.y/32 - 1];
+        else if (dir == "down") 
+            return [this.x/32, this.y/32 + 1];
+        else if (dir == "right") 
+            return [this.x/32 + 1, this.y/32];
+        else if (dir == "left") 
+            return [this.x/32 - 1, this.y/32];
+    }
+
+    //персонаж проверяет, свободна ли клетка
+    isCellFree(dir) {
+
+        let map = overworld.getMap();
+
+        //получаем стенки
+        let walls = map.walls;
+        //получаем занятые персонажами клетки
+        let charsPos = overworld.getOccupiedCells();
+
+        //считаем все занятые клетки
+        let occCells = walls.concat(charsPos);
+
+        return !JSON.stringify(occCells).includes(JSON.stringify(this.getNextPos(dir)));
+    }
 
     //движения
     async moveRight(c = 1) {
@@ -22,11 +49,11 @@ class Person extends GameObject {
         for (let i = 0; i < c * 32; i ++) {
             //с каждой прошедшей клектой проверяем стенки
             if (i % 32 == 0) {
-                if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("right")))) {
+                if (this.isCellFree("right")) {
+                    await step(); 
+                } else {
                     console.log("Занято!");
                     break;
-                } else {
-                    await step();
                 }
             } else 
                 await step();
@@ -43,11 +70,11 @@ class Person extends GameObject {
         this.sprite.moveLeftAnimation(c); //асинхронная
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
-                if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("left")))) {
+                if (this.isCellFree("left")) {
+                    await step(); 
+                } else {
                     console.log("Занято!");
                     break;
-                } else {
-                    await step();
                 }
             } else 
                 await step();
@@ -65,11 +92,11 @@ class Person extends GameObject {
         else this.sprite.moveLeftAnimation(c);
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
-                if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("up")))) {
+                if (this.isCellFree("up")) {
+                    await step(); 
+                } else {
                     console.log("Занято!");
                     break;
-                } else {
-                    await step();
                 }
             } else 
                 await step();
@@ -88,11 +115,11 @@ class Person extends GameObject {
         else this.sprite.moveLeftAnimation(c);
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
-                if (JSON.stringify(window.OverworldMaps.lev1.walls).includes(JSON.stringify(this.getNextPos("down")))) {
+                if (this.isCellFree("down")) {
+                    await step(); 
+                } else {
                     console.log("Занято!");
                     break;
-                } else {
-                    await step();
                 }
             } else 
                 await step();
