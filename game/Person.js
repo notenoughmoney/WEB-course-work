@@ -10,6 +10,12 @@ class Person extends GameObject {
     counter = 0;
     speed = 20;
 
+    //ставим человечков на указанные места
+    setPos(sx, sy) {
+        this.x = sx;
+        this.y = sy;
+    }
+
     //возвращаем следующую позицию персонажа в клетках
     getNextPos(dir) {
         if(dir == "up") 

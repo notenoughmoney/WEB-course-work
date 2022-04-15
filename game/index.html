@@ -4,11 +4,16 @@
     <title>Naruto game</title>
     <link href="/styles/global.css" type="text/css" rel="stylesheet">
     <link href="/styles/TextMessage.css" type="text/css" rel="stylesheet">
+    <link href="/styles/SceneTransition.css" type="text/css" rel="stylesheet">
     <link type="image/x-icon" href="/images/n.png" rel="shortcut icon">
 </head>
 <body>
     <div class="game-container">
         <canvas class="game-canvas" width="400" height="200"></canvas>
+    </div>
+
+    <div class="code-container">
+        <textarea class="code-area" cols="40" rows="10"></textarea>
     </div>
 
     <button id="fun" onclick="soundStart()">Включение мелодии</button>
@@ -24,12 +29,14 @@
     <script src="/OverworldMap.js">   </script>
     <script src="/OverworldEvent.js"> </script>
     <script src="/TextMessage.js">    </script>
-    <script src="/RevealingText.js">    </script>
+    <script src="/RevealingText.js">  </script>
+    <script src="/SceneTransition.js"></script>
     <script src="/Person.js">         </script>
     <script src="/Naruto.js">         </script>
     <script src="/Sakura.js">         </script>
     <script src="/Sasuke.js">         </script>
     <script src="/levels.js">         </script>
+    <script src="/CodeConverter.js">  </script>
     <script src="/Init.js">           </script>
 
 

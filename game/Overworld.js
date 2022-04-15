@@ -6,6 +6,14 @@ class Overworld {
         
     }
 
+    //возвращаем челиков на свои места
+    returnPos() {
+        Object.values(this.map.gameObjects).forEach(object => {
+            object.setPos(object.sx, object.sy);
+        });
+
+    }
+
     //получаем занятые персонажами клетки
     getOccupiedCells() {
         return [
@@ -30,32 +38,38 @@ class Overworld {
         });
     }
 
-    init() {
-        this.map = new OverworldMap(window.OverworldMaps.lev1);
+    async team7Spawn() {
+        this.Naruto.spawnMovement();
+        this.Sakura.spawnMovement();
+        this.Sasuke.spawnMovement();
+    }
+
+    //вот эта функция предполагает инициализацию уровня
+    init(mapConfig) {
+        //указываем какую карту (уровень) хотим открыть
+        this.map = new OverworldMap(mapConfig);
+        //не понимаю, что это
+        this.map.overworld = this;
+
+        //подготавливаем персонажей, чтобы потом с ними спокойно работать 
         this.Naruto = this.map.gameObjects.naruto;
         this.Sakura = this.map.gameObjects.sakura;
         this.Sasuke = this.map.gameObjects.sasuke;
 
-        this.startGame();
+        //чтобы человечки показались
+        this.team7Spawn(1);
     }
 
-    async team7Spawn() {
-        this.Naruto.spawnMovement(2);
-        this.Sakura.spawnMovement(2);
-        this.Sasuke.spawnMovement(2);
+    async startScript(code) {
+
+        this.returnPos();
+
+        await eval("(async () => {" + code + "})()");
+
     }
 
-    async startGame() {
+    
 
-        this.team7Spawn();
-
-        // await this.Naruto.moveRight(4);
-        // await this.Sakura.moveDown(1);
-        // await this.Sasuke.moveUp(2);
-        
-
-
-        
-    }
+    
 }
 

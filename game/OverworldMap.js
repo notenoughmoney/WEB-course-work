@@ -6,6 +6,7 @@ class OverworldMap {
         this.lowerImage.src = config.lowerSrc;
     }
 
+    //рисуем карту
     drawLowerImage(ctx) {
         ctx.drawImage(this.lowerImage, 0, 0);
     }
