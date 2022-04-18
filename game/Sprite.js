@@ -55,6 +55,15 @@ class Sprite {
                 [50, 0, 50, 50],
                 [0, 0, 50, 50]
             ],
+            dying: [
+                [0, 350, 50, 50],
+                [50, 350, 50, 50],
+                [100, 350, 50, 50],
+                [150, 350, 50, 50],
+                [200, 350, 50, 50],
+                [250, 350, 50, 50],
+                [300, 0, 0, 0] 
+            ],
             stayright: [0, 0, 50, 50],
             stayleft: [0, 150, 50, 50]
         }
@@ -62,7 +71,6 @@ class Sprite {
 
         this.currentDir = "right";
 
-        //Reference to game object
         this.gameObject = config.gameObject;
 
     }
@@ -148,6 +156,22 @@ class Sprite {
         }
     }
 
+    //только в правую сторону
+    nextDie(frameN) {
+        this.frame = this.animations.dying[frameN];
+    }
+    async dieAnimation() {
+        //убираем тень
+        this.useShadow = false;
+        let frameN = 0;
+        for (let i = 0; i < 7; i++) {
+            this.nextDie(frameN);
+            overworld.another();
+            frameN++;
+            await this.timeout(150);
+        }
+    }
+
     nextSpawn(frameN) {
         this.frame = this.animations.spawn[frameN];
     }
@@ -176,7 +200,7 @@ class Sprite {
         const x = this.gameObject.x;
         const y = this.gameObject.y;
 
-        this.isShadowLoaded && ctx.drawImage(this.shadow, x, y);
+        this.useShadow && ctx.drawImage(this.shadow, x, y);
 
         this.isLoaded && ctx.drawImage(this.image,
             this.frame[0], this.frame[1],

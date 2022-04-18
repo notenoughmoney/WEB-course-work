@@ -10,6 +10,10 @@ class Person extends GameObject {
     counter = 0;
     speed = 20;
 
+    handler = e => {
+        console.log("done");
+    } 
+
     //ставим человечков на указанные места
     setPos(sx, sy) {
         this.x = sx;
@@ -26,6 +30,11 @@ class Person extends GameObject {
             return [this.x/32 + 1, this.y/32];
         else if (dir == "left") 
             return [this.x/32 - 1, this.y/32];
+    }
+
+    //возвращаем текущую позицию персонажа в клетках
+    getCurPos() {
+        return [this.x/32, this.y/32];
     }
 
     //персонаж проверяет, свободна ли клетка
@@ -110,6 +119,19 @@ class Person extends GameObject {
         if (this.sprite.currentDir == "right") this.sprite.stayPosRight(c);
         else this.sprite.stayPosLeft(c);
         overworld.another();
+
+        //когда персонаж закончил движение, вызываем событие
+        const event = new CustomEvent("PersonChangedPosition", {
+            detail: {
+                where: overworld.map,
+                who: this,
+                pos: this.getCurPos(),
+                what: "moveUp"
+            }
+        });
+        document.addEventListener("PersonChangedPosition", Handler.handler);
+        document.dispatchEvent(event);
+
     }
     async moveDown(c = 1) {
         const step = async () => {
@@ -148,6 +170,14 @@ class Person extends GameObject {
     //спавн
     async spawnMovement(c = 1) {
         await this.sprite.spawnMovement(c);
+    }
+
+    //умираем
+    async die() {
+        await this.sprite.dieAnimation();
+        //убираем чела c нашей игровой площадки
+        this.x = -32;
+        this.y = -32;
     }
 
 }

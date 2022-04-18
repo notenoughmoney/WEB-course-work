@@ -1,5 +1,6 @@
 window.OverworldMaps = {
     lev1: {
+        name: "1",
         lowerSrc: "/images/lev1.png",
         gameObjects: {
             naruto: new Naruto({
@@ -30,6 +31,7 @@ window.OverworldMaps = {
         ]
     },
     lev2: {
+        name: "2",
         lowerSrc: "/images/lev2.png",
         gameObjects: {
             naruto: new Naruto({
@@ -46,6 +48,11 @@ window.OverworldMaps = {
                 x: utils.widthGrid(2),
                 y: utils.widthGrid(4),
                 src: "/images/sasuke_act.png"
+            }),
+            enemy: new Enemy({
+                x: utils.widthGrid(8),
+                y: utils.widthGrid(3),
+                src: "/images/enemy_act.png"
             })
         },
         walls: [

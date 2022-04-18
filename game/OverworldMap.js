@@ -1,5 +1,6 @@
 class OverworldMap {
     constructor(config) {
+        this.name = config.name;
         this.gameObjects = config.gameObjects;
         this.walls = config.walls;
         this.lowerImage = new Image();
@@ -12,8 +13,6 @@ class OverworldMap {
     }
 
     async startCutscene(events) {
-        this.isCutscenePlaying = true;
-    
         for (let i=0; i<events.length; i++) {
           const eventHandler = new OverworldEvent({
             event: events[i],
@@ -21,8 +20,6 @@ class OverworldMap {
           })
           await eventHandler.init();
         }
-    
-        this.isCutscenePlaying = false;
     }
 }
 

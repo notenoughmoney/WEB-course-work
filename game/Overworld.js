@@ -55,6 +55,7 @@ class Overworld {
         this.Naruto = this.map.gameObjects.naruto;
         this.Sakura = this.map.gameObjects.sakura;
         this.Sasuke = this.map.gameObjects.sasuke;
+        this.Enemy  = this.map.gameObjects.enemy; 
 
         //чтобы человечки показались
         this.team7Spawn(1);

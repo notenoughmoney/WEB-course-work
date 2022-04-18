@@ -6,7 +6,7 @@ overworld = new Overworld({
 overworld.init(window.OverworldMaps.lev2);
 
 //вносим тестовый пример в <textarea>
-var startCode = "Naruto.moveUp(4);\nNaruto.moveRight();\nSakura.hitRight(3);"
+var startCode = "Enemy.die();"
 document.querySelector(".code-area").value = startCode;
 
 //если нажмём на кнопку
