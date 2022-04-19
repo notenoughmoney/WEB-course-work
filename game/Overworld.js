@@ -10,8 +10,10 @@ class Overworld {
     returnPos() {
         Object.values(this.map.gameObjects).forEach(object => {
             object.setPos(object.sx, object.sy);
+            object.sprite.useShadow = true;
+            object.sprite.setStartDir();
+            this.another();
         });
-
     }
 
     //получаем занятые персонажами клетки
@@ -40,8 +42,8 @@ class Overworld {
 
     async team7Spawn() {
         this.Naruto.spawnMovement();
-        this.Sakura.spawnMovement();
-        this.Sasuke.spawnMovement();
+        if (this.Sakura != undefined) this.Sakura.spawnMovement();
+        if (this.Sasuke != undefined) this.Sasuke.spawnMovement();
     }
 
     //вот эта функция предполагает инициализацию уровня
@@ -63,9 +65,19 @@ class Overworld {
 
     async startScript(code) {
 
+        //все оживают и возвращаются на свои места
         this.returnPos();
 
-        await eval("(async () => {" + code + "})()");
+
+        try {
+            await eval("(async () => {" + code + "})()");
+        } catch (error) {
+            await this.map.startCutscene([
+                {type: "textMessage", text: "Упс... Похоже ты что-то ввёл неправильно."}
+            ]);
+            console.log(error);
+        }
+        
 
     }
 

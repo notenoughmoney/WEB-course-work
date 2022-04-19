@@ -8,6 +8,7 @@ class GameObject {
         this.sprite = new Sprite({
             gameObject: this,
             src: config.src,
+            startDir: config.startDir
 
         });
     }

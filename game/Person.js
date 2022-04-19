@@ -10,10 +10,6 @@ class Person extends GameObject {
     counter = 0;
     speed = 20;
 
-    handler = e => {
-        console.log("done");
-    } 
-
     //ставим человечков на указанные места
     setPos(sx, sy) {
         this.x = sx;
@@ -67,7 +63,6 @@ class Person extends GameObject {
                 if (this.isCellFree("right")) {
                     await step(); 
                 } else {
-                    console.log("Занято!");
                     break;
                 }
             } else 
@@ -75,6 +70,18 @@ class Person extends GameObject {
         }
         this.sprite.stayPosRight();
         overworld.another();
+
+        //когда персонаж закончил движение, вызываем событие
+        const eventPersonChangedPosition = new CustomEvent("PersonChangedPosition", {
+            detail: {
+                where: overworld.map,
+                who: this,
+                pos: this.getCurPos(),
+                what: "moveRight"
+            }
+        });
+        document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.dispatchEvent(eventPersonChangedPosition);
     }
     async moveLeft(c = 1) {
         const step = async () => {
@@ -88,7 +95,6 @@ class Person extends GameObject {
                 if (this.isCellFree("left")) {
                     await step(); 
                 } else {
-                    console.log("Занято!");
                     break;
                 }
             } else 
@@ -96,6 +102,18 @@ class Person extends GameObject {
         }
         this.sprite.stayPosLeft();
         overworld.another();
+
+        //когда персонаж закончил движение, вызываем событие
+        const eventPersonChangedPosition = new CustomEvent("PersonChangedPosition", {
+            detail: {
+                where: overworld.map,
+                who: this,
+                pos: this.getCurPos(),
+                what: "moveLeft"
+            }
+        });
+        document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.dispatchEvent(eventPersonChangedPosition);
     }
     async moveUp(c = 1) {
         const step = async () => {
@@ -110,7 +128,6 @@ class Person extends GameObject {
                 if (this.isCellFree("up")) {
                     await step(); 
                 } else {
-                    console.log("Занято!");
                     break;
                 }
             } else 
@@ -121,7 +138,7 @@ class Person extends GameObject {
         overworld.another();
 
         //когда персонаж закончил движение, вызываем событие
-        const event = new CustomEvent("PersonChangedPosition", {
+        const eventPersonChangedPosition = new CustomEvent("PersonChangedPosition", {
             detail: {
                 where: overworld.map,
                 who: this,
@@ -129,8 +146,8 @@ class Person extends GameObject {
                 what: "moveUp"
             }
         });
-        document.addEventListener("PersonChangedPosition", Handler.handler);
-        document.dispatchEvent(event);
+        document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.dispatchEvent(eventPersonChangedPosition);
 
     }
     async moveDown(c = 1) {
@@ -146,7 +163,6 @@ class Person extends GameObject {
                 if (this.isCellFree("down")) {
                     await step(); 
                 } else {
-                    console.log("Занято!");
                     break;
                 }
             } else 
@@ -155,17 +171,53 @@ class Person extends GameObject {
         if (this.sprite.currentDir == "right") this.sprite.stayPosRight(c);
         else this.sprite.stayPosLeft(c);
         overworld.another();
+
+        //когда персонаж закончил движение, вызываем событие
+        const eventPersonChangedPosition = new CustomEvent("PersonChangedPosition", {
+            detail: {
+                where: overworld.map,
+                who: this,
+                pos: this.getCurPos(),
+                what: "moveDown"
+            }
+        });
+        document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.dispatchEvent(eventPersonChangedPosition);
     }
     //удары
     async hitRight(c = 1) {
         await this.sprite.hitRightAnimation(c);
         this.sprite.stayPosRight();
         overworld.another();
+
+        //когда персонаж закончил движение, вызываем событие
+        const eventPersonHitted = new CustomEvent("PersonHitted", {
+            detail: {
+                where: overworld.map,
+                who: this,
+                pos: this.getCurPos(),
+                what: "hitRight"
+            }
+        });
+        document.addEventListener("PersonHitted", Handler.hitHandler);
+        document.dispatchEvent(eventPersonHitted);
     }
     async hitLeft(c = 1) {
         await this.sprite.hitLeftAnimation(c);
         this.sprite.stayPosLeft();
         overworld.another();
+
+        //когда персонаж закончил движение, вызываем событие
+        const eventPersonHitted = new CustomEvent("PersonHitted", {
+            detail: {
+                where: overworld.map,
+                who: this,
+                pos: this.getCurPos(),
+                what: "hitLeft"
+            }
+        });
+        document.addEventListener("PersonHitted", Handler.hitHandler);
+        document.dispatchEvent(eventPersonHitted);
     }
     //спавн
     async spawnMovement(c = 1) {

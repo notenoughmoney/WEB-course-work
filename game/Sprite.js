@@ -16,6 +16,9 @@ class Sprite {
         this.shadow.onload = () => {
             this.isShadowLoaded = true;
         }
+
+        //направление взгляда при спавне
+        this.startDir = config.startDir;
         
 
         //Configuring animations
@@ -75,6 +78,12 @@ class Sprite {
 
     }
 
+    setStartDir() {
+        if (this.startDir == "left") 
+            this.frame = this.animations.stayleft;
+        else
+            this.frame = this.animations.stayright;
+    }
 
     ////////// RIGHT //////////
     nextFrameRight(frameN) {
