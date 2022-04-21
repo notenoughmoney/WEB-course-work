@@ -42,12 +42,15 @@ class CodeConverter {
 
         const regex = RegExp("Naruto|Sakura|Sasuke|Enemy|Itachi", 'g');
         let myArray;
+        let c = 0;
         while ((myArray = regex.exec(code)) !== null) {
             console.log(myArray);
+            
             if 
                 (readyString == code) readyString = this.insert(readyString, "await this.", myArray.index)
             else       
-                readyString = this.insert(readyString, "await this.", myArray.index + 11);
+                readyString = this.insert(readyString, "await this.", myArray.index + 11*c);
+            c++;
         }
         
         console.log(readyString);

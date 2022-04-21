@@ -3,6 +3,7 @@ class OverworldMap {
         this.name = config.name;
         this.gameObjects = config.gameObjects;
         this.walls = config.walls;
+        this.water = config.water;
         this.lowerImage = new Image();
         this.lowerImage.src = config.lowerSrc;
     }

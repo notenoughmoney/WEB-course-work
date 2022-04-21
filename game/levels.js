@@ -19,7 +19,8 @@ window.OverworldMaps = {
             [1, 1], [1, 2], // кровать
             [3, 1], [4, 1], // шкаф
             [7, 1] // тумба
-        ]
+        ], 
+        water: []
     },
 
     lev2: {
@@ -28,12 +29,15 @@ window.OverworldMaps = {
         gameObjects: {
             naruto: new Naruto({
                 x: utils.widthGrid(0),
-                y: utils.widthGrid(4),
+                y: utils.widthGrid(1),
                 src: "/images/naruto_act.png",
                 startDir: "right"
             })
         },
-        walls: []
+        walls: [], 
+        water: [
+            [4, 0], [4, 1], [5, 1], [4, 2], [5, 2], [5, 4], [5, 5]
+        ]
     },
 
     lev3: {
@@ -63,7 +67,8 @@ window.OverworldMaps = {
             [0, 1], [0, 2], [0, 3], [0, 4], // левая
             [1, 4], [2, 4], [3, 4], [4, 4], // нижняя
             [1, 1], [2, 1], [3, 1], [3, 2], [4, 2] // верхняя
-        ]
+        ], 
+        water: []
     },
 
     lev4: {
@@ -95,7 +100,8 @@ window.OverworldMaps = {
                 startDir: "left"
             }),
         },
-        walls: []
+        walls: [], 
+        water: []
     },
 
     lev5: {
@@ -142,6 +148,7 @@ window.OverworldMaps = {
         walls: [
             [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1], [8, 1],
             [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5] 
-        ]
+        ], 
+        water: []
     },
 }

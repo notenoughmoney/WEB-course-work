@@ -15,6 +15,13 @@ class OverworldEvent {
         message.init(document.querySelector(".game-container"))
     }
 
+    delTextMessage(resolve) {
+        let child = document.querySelector(".TextMessage");
+        if (child == undefined) resolve();
+        child.parentNode.removeChild(child);
+        resolve();
+    }
+
     changeMap(resolve) {
         const sceneTransition = new SceneTransition();
         sceneTransition.init(document.querySelector(".game-container"), () => {

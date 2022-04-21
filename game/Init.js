@@ -3,10 +3,10 @@ overworld = new Overworld({
     element: document.querySelector(".game-container")
 });
 //инициализируем мир (1 lvl)
-overworld.init(window.OverworldMaps.lev1);
+overworld.init(window.OverworldMaps.lev2);
 
 //вносим тестовый пример в <textarea>
-var startCode = "Sakura.hitRight();"
+var startCode = "Naruto.moveDown()\nNaruto.moveRight(5);"
 document.querySelector(".code-area").value = startCode;
 
 //если нажмём на кнопку

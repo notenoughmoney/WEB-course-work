@@ -26,6 +26,15 @@ class Overworld {
         ];
     }
 
+    getEnemyCells() {
+        return [
+            (this.Enemy1 == undefined) ? null : [this.Enemy1.x/32, this.Enemy1.y/32],
+            (this.Enemy2 == undefined) ? null : [this.Enemy2.x/32, this.Enemy2.y/32],
+            (this.Enemy3 == undefined) ? null : [this.Enemy3.x/32, this.Enemy3.y/32],
+            (this.Itachi == undefined) ? null : [this.Itachi.x/32, this.Itachi.y/32],
+        ]
+    }
+
     //на какой карте происходит действие
     getMap() {
         return this.map;
@@ -61,6 +70,15 @@ class Overworld {
 
         //чтобы человечки показались
         this.team7Spawn(1);
+
+        //чтобы запустить соответствующий обработчик
+        const eventSceneInit = new CustomEvent("SceneInit", {
+            detail: {
+                where: this.map
+            }
+        });
+        document.addEventListener("SceneInit", Handler.sceneInitHandler);
+        document.dispatchEvent(eventSceneInit);
     }
 
     async startScript(code) {
