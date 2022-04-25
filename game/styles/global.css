@@ -11,15 +11,15 @@ body{
 
 .code-container {
     position: relative;
-    width: 400px;
-    height: 200px;
+    width: calc(32px * 12);
+    height: calc(32px * 7);
     margin: 20px;
 }
 
 .game-container {
     position: relative;
     width: calc(32px * 12);
-    height: calc(32px * 6);
+    height: calc(32px * 7);
     margin: 0 auto;
     outline: 1px solid #fff;
 

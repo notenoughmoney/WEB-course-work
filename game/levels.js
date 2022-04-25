@@ -34,7 +34,13 @@ window.OverworldMaps = {
                 startDir: "right"
             })
         },
-        walls: [], 
+        walls: [
+            [0, -1], [1, -1], [2, -1], [3, -1], [4, -1], [5, -1], [6, -1], [7, -1], [8, -1], [9, -1], // верх
+            [0, 6], [1, 6], [2, 6], [3, 6], [4, 6], [5, 6], [6, 6], [7, 6], [8, 6], [9, 6], // низ
+            [-1, 0], [-1, 1], [-1, 2], [-1, 3], [-1, 4], [-1, 5], //левая
+            [10, 0], [10, 1], [10, 2], [10, 3], [10, 4], [10, 5], //правая
+            [0, 3] //дерево
+        ], 
         water: [
             [4, 0], [4, 1], [5, 1], [4, 2], [5, 2], [5, 4], [5, 5]
         ]
@@ -75,6 +81,12 @@ window.OverworldMaps = {
         name: "4",
         lowerSrc: "/images/maps/lev4.png",
         gameObjects: {
+            enemy1: new Enemy({
+                x: utils.widthGrid(5),
+                y: utils.widthGrid(2),
+                src: "/images/enemy_act.png",
+                startDir: "left"
+            }),
             naruto: new Naruto({
                 x: utils.widthGrid(2),
                 y: utils.widthGrid(2),
@@ -92,40 +104,19 @@ window.OverworldMaps = {
                 y: utils.widthGrid(1),
                 src: "/images/sasuke_act.png",
                 startDir: "right"
-            }),
-            enemy: new Enemy({
-                x: utils.widthGrid(5),
-                y: utils.widthGrid(2),
-                src: "/images/enemy_act.png",
-                startDir: "left"
-            }),
+            })
         },
         walls: [], 
-        water: []
+        water: [
+            [0, 5], [1, 5], [2, 5], [1, 6], [2, 6]
+        ]
     },
 
     lev5: {
         name: "5",
         lowerSrc: "/images/maps/lev5.png",
         gameObjects: {
-            naruto: new Naruto({
-                x: utils.widthGrid(2),
-                y: utils.widthGrid(3),
-                src: "/images/naruto_act.png",
-                startDir: "right"
-            }),
-            sakura: new Sakura({
-                x: utils.widthGrid(1),
-                y: utils.widthGrid(4),
-                src: "/images/sakura_act.png",
-                startDir: "right"
-            }),
-            sasuke: new Sasuke({
-                x: utils.widthGrid(1),
-                y: utils.widthGrid(2),
-                src: "/images/sasuke_act.png",
-                startDir: "right"
-            }),
+            //поменям очередность, чтобы рендеринг происходил правильно
             enemy1: new Enemy({
                 x: utils.widthGrid(5),
                 y: utils.widthGrid(2),
@@ -144,11 +135,52 @@ window.OverworldMaps = {
                 src: "/images/enemy_act.png",
                 startDir: "left"
             }),
+            sasuke: new Sasuke({
+                x: utils.widthGrid(1),
+                y: utils.widthGrid(2),
+                src: "/images/sasuke_act.png",
+                startDir: "right"
+            }),
+            naruto: new Naruto({
+                x: utils.widthGrid(2),
+                y: utils.widthGrid(3),
+                src: "/images/naruto_act.png",
+                startDir: "right"
+            }),
+            sakura: new Sakura({
+                x: utils.widthGrid(1),
+                y: utils.widthGrid(4),
+                src: "/images/sakura_act.png",
+                startDir: "right"
+            })
         },
         walls: [
             [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1], [8, 1],
             [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5] 
         ], 
+        water: []
+    },
+
+    lev6: {
+        name: "6",
+        lowerSrc: "/images/maps/lev6.png",
+        gameObjects: {
+            naruto: new Naruto({
+                x: utils.widthGrid(2),
+                y: utils.widthGrid(2),
+                src: "/images/naruto_act.png",
+                startDir: "right", 
+                dontUseShadow: true
+            }),
+            itachi: new Enemy({
+                x: utils.widthGrid(5),
+                y: utils.widthGrid(2),
+                src: "/images/itachi_act.png",
+                startDir: "left", 
+                dontUseShadow: true
+            })
+        },
+        walls: [], 
         water: []
     },
 }

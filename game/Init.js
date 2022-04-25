@@ -3,7 +3,7 @@ overworld = new Overworld({
     element: document.querySelector(".game-container")
 });
 //инициализируем мир (1 lvl)
-overworld.init(window.OverworldMaps.lev2);
+overworld.init(window.OverworldMaps.lev5);
 
 //вносим тестовый пример в <textarea>
 var startCode = "Naruto.moveDown()\nNaruto.moveRight(5);"
@@ -23,3 +23,5 @@ startButton.addEventListener("click", async function(event) {
 
 })
 
+// Naruto.moveRight(2)
+// Naruto.hitRight(1);

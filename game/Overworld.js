@@ -53,6 +53,10 @@ class Overworld {
         this.Naruto.spawnMovement();
         if (this.Sakura != undefined) this.Sakura.spawnMovement();
         if (this.Sasuke != undefined) this.Sasuke.spawnMovement();
+        if (this.Itachi != undefined) {
+            this.Itachi.setPos(utils.widthGrid(7), utils.widthGrid(2));
+            this.Itachi.moveLeft(2);
+        }
     }
 
     //вот эта функция предполагает инициализацию уровня
@@ -66,7 +70,10 @@ class Overworld {
         this.Naruto = this.map.gameObjects.naruto;
         this.Sakura = this.map.gameObjects.sakura;
         this.Sasuke = this.map.gameObjects.sasuke;
-        this.Enemy  = this.map.gameObjects.enemy; 
+        this.Enemy1 = this.map.gameObjects.enemy1;
+        this.Enemy2 = this.map.gameObjects.enemy2;
+        this.Enemy3 = this.map.gameObjects.enemy3;
+        this.Itachi = this.map.gameObjects.itachi; 
 
         //чтобы человечки показались
         this.team7Spawn(1);

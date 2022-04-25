@@ -10,7 +10,7 @@ class Sprite {
 
         //Shadow
         this.shadow = new Image();
-        this.useShadow = true;
+        this.useShadow = true && !config.dontUseShadow;
         if (this.useShadow)
             this.shadow.src = "/images/Shadow.png";
         this.shadow.onload = () => {
@@ -67,6 +67,38 @@ class Sprite {
                 [250, 350, 50, 50],
                 [300, 0, 0, 0] 
             ],
+            sexy: [
+                [0, 400, 50, 50],
+                [50, 400, 50, 50],
+                [100, 400, 50, 50],
+                [150, 400, 50, 50],
+                [200, 400, 50, 50],
+                [250, 400, 50, 50],
+                [0, 450, 50, 50],
+                [50, 450, 50, 50],
+                [100, 450, 50, 50],
+                [150, 450, 50, 50],
+                [200, 450, 50, 50],
+                [250, 450, 50, 50],
+                [0, 500, 50, 50],
+                [50, 500, 50, 50],
+                [100, 500, 50, 50],
+                [150, 500, 50, 50],
+                [200, 500, 50, 50],
+                [250, 500, 50, 50],
+                [0, 550, 50, 50],
+                [50, 550, 50, 50],
+                [100, 550, 50, 50],
+                [150, 550, 50, 50],
+                [200, 550, 50, 50],
+                [250, 550, 50, 50],
+                [0, 600, 50, 50],
+                [50, 600, 50, 50],
+                [100, 600, 50, 50],
+                [150, 600, 50, 50],
+                [200, 600, 50, 50],
+                [250, 600, 50, 50],
+            ],
             stayright: [0, 0, 50, 50],
             stayleft: [0, 150, 50, 50]
         }
@@ -75,6 +107,8 @@ class Sprite {
         this.currentDir = "right";
 
         this.gameObject = config.gameObject;
+
+        this.setStartDir();
 
     }
 
@@ -196,6 +230,18 @@ class Sprite {
         }
     }
 
+    nextSexy(frameN) {
+        this.frame = this.animations.sexy[frameN];
+    }
+    async sexyAnimation() {
+        let frameN = 0;
+        for (let i = 0; i < 30; i++) {
+            this.nextSexy(frameN);
+            overworld.another();
+            frameN++;
+            await this.timeout(90);
+        }
+    }
 
     //после каждого мувмента приводми челиков в начальную стойку
     stayPosRight() {

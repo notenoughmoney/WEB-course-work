@@ -8,8 +8,8 @@ class GameObject {
         this.sprite = new Sprite({
             gameObject: this,
             src: config.src,
-            startDir: config.startDir
-
+            startDir: config.startDir,
+            dontUseShadow: config.dontUseShadow
         });
     }
 }

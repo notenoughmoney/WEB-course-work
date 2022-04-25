@@ -49,7 +49,7 @@ class Person extends GameObject {
         return !JSON.stringify(occCells).includes(JSON.stringify(this.getNextPos(dir)));
     }
 
-    isCellGood(dir) {
+    isCellGood() {
         let map = overworld.getMap();
 
         //получаем реку и врагов
@@ -96,17 +96,24 @@ class Person extends GameObject {
                     if (this.isCellGood("right")) {
                         await step();
                     } else {
-                        this.sprite.dieAnimation();
+                        await this.die();
                         break;
                         
                     }
                 } else {
+                    overworld.getMap().startCutscene([
+                        {type: "delTextMessage"},
+                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                    ]);
                     break;
                 }
                 
             } else 
                 await step();
         }
+
+        if (!this.isCellGood()) await this.die();
+
         this.sprite.stayPosRight();
         overworld.another();
 
@@ -145,17 +152,24 @@ class Person extends GameObject {
                     if (this.isCellGood("left")) {
                         await step();
                     } else {
-                        this.sprite.dieAnimation();
+                        await this.die();
                         break;
                         
                     }
                 } else {
+                    overworld.getMap().startCutscene([
+                        {type: "delTextMessage"},
+                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                    ]);
                     break;
                 }
 
             } else 
                 await step();
         }
+
+        if (!this.isCellGood()) await this.die();
+
         this.sprite.stayPosLeft();
         overworld.another();
 
@@ -195,17 +209,24 @@ class Person extends GameObject {
                     if (this.isCellGood("up")) {
                         await step();
                     } else {
-                        this.sprite.dieAnimation();
+                        await this.die();
                         break;
                         
                     }
                 } else {
+                    overworld.getMap().startCutscene([
+                        {type: "delTextMessage"},
+                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                    ]);
                     break;
                 }
 
             } else 
                 await step();
         }
+
+        if (!this.isCellGood()) await this.die();
+
         if (this.sprite.currentDir == "right") this.sprite.stayPosRight(c);
         else this.sprite.stayPosLeft(c);
         overworld.another();
@@ -246,17 +267,24 @@ class Person extends GameObject {
                     if (this.isCellGood("down")) {
                         await step();
                     } else {
-                        this.sprite.dieAnimation();
+                        await this.die();
                         break;
                         
                     }
                 } else {
+                    overworld.getMap().startCutscene([
+                        {type: "delTextMessage"},
+                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                    ]);
                     break;
                 }
 
             } else 
                 await step();
         }
+
+        if (!this.isCellGood()) await this.die();
+
         if (this.sprite.currentDir == "right") this.sprite.stayPosRight(c);
         else this.sprite.stayPosLeft(c);
         overworld.another();
