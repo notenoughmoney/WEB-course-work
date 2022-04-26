@@ -1,6 +1,7 @@
 class Person extends GameObject {
     constructor(config) {
         super(config);
+        this.dead = false;
     }
 
     timeout(ms) {
@@ -85,10 +86,13 @@ class Person extends GameObject {
             //с каждой прошедшей клектой проверяем стенки
             if (i % 32 == 0) {
 
-                eventPersonChangedPosition.detail.pos = this.getCurPos()
-                //каждый раз при прохождении клетки
-                document.addEventListener("PersonChangedPosition", Handler.moveHandler);
-                document.dispatchEvent(eventPersonChangedPosition);
+                if (i != 0) {
+                    eventPersonChangedPosition.detail.pos = this.getCurPos()
+                    //каждый раз при прохождении клетки
+                    document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+                    document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
+                    document.dispatchEvent(eventPersonChangedPosition);
+                }
 
                 //проверка на наличие стен и друзей
                 if (this.isCellFree("right")) {
@@ -103,7 +107,7 @@ class Person extends GameObject {
                 } else {
                     overworld.getMap().startCutscene([
                         {type: "delTextMessage"},
-                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                        {type: "textMessage", text: "Твой персонаж ударился. Не делай больше так!"}
                     ]);
                     break;
                 }
@@ -120,6 +124,7 @@ class Person extends GameObject {
         eventPersonChangedPosition.detail.pos = this.getCurPos()
         //и в конце
         document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
         document.dispatchEvent(eventPersonChangedPosition);
     }
     async moveLeft(c = 1) {
@@ -142,9 +147,12 @@ class Person extends GameObject {
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
 
-                eventPersonChangedPosition.detail.pos = this.getCurPos()
-                document.addEventListener("PersonChangedPosition", Handler.moveHandler);
-                document.dispatchEvent(eventPersonChangedPosition);
+                if (i != 0) {
+                    eventPersonChangedPosition.detail.pos = this.getCurPos()
+                    document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+                    document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
+                    document.dispatchEvent(eventPersonChangedPosition);
+                }
 
                 //проверка на наличие стен и друзей
                 if (this.isCellFree("left")) {
@@ -159,7 +167,7 @@ class Person extends GameObject {
                 } else {
                     overworld.getMap().startCutscene([
                         {type: "delTextMessage"},
-                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                        {type: "textMessage", text: "Твой персонаж ударился. Не делай больше так!"}
                     ]);
                     break;
                 }
@@ -176,6 +184,7 @@ class Person extends GameObject {
         //когда персонаж закончил движение, вызываем событие
         eventPersonChangedPosition.detail.pos = this.getCurPos()
         document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
         document.dispatchEvent(eventPersonChangedPosition);
     }
     async moveUp(c = 1) {
@@ -199,9 +208,12 @@ class Person extends GameObject {
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
 
-                eventPersonChangedPosition.detail.pos = this.getCurPos()
-                document.addEventListener("PersonChangedPosition", Handler.moveHandler);
-                document.dispatchEvent(eventPersonChangedPosition);
+                if (i != 0) {
+                    eventPersonChangedPosition.detail.pos = this.getCurPos()
+                    document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+                    document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
+                    document.dispatchEvent(eventPersonChangedPosition);
+                }
 
                 //проверка на наличие стен и друзей
                 if (this.isCellFree("up")) {
@@ -216,7 +228,7 @@ class Person extends GameObject {
                 } else {
                     overworld.getMap().startCutscene([
                         {type: "delTextMessage"},
-                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                        {type: "textMessage", text: "Твой персонаж ударился. Не делай больше так!"}
                     ]);
                     break;
                 }
@@ -234,6 +246,7 @@ class Person extends GameObject {
         eventPersonChangedPosition.detail.pos = this.getCurPos()
         //когда персонаж закончил движение, вызываем событие
         document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
         document.dispatchEvent(eventPersonChangedPosition);
     }
     async moveDown(c = 1) {
@@ -257,9 +270,12 @@ class Person extends GameObject {
         for (let i = 0; i < c * 32; i ++) {
             if (i % 32 == 0) {
 
-                eventPersonChangedPosition.detail.pos = this.getCurPos()
-                document.addEventListener("PersonChangedPosition", Handler.moveHandler);
-                document.dispatchEvent(eventPersonChangedPosition);
+                if (i != 0) {
+                    eventPersonChangedPosition.detail.pos = this.getCurPos()
+                    document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+                    document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
+                    document.dispatchEvent(eventPersonChangedPosition);
+                }
 
                 //проверка на наличие стен и друзей
                 if (this.isCellFree("down")) {
@@ -274,7 +290,7 @@ class Person extends GameObject {
                 } else {
                     overworld.getMap().startCutscene([
                         {type: "delTextMessage"},
-                        {type: "textMessage", text: "Наруто ударился. Не делай больше так! Он хромает."}
+                        {type: "textMessage", text: "Твой персонаж ударился. Не делай больше так!"}
                     ]);
                     break;
                 }
@@ -292,6 +308,7 @@ class Person extends GameObject {
         eventPersonChangedPosition.detail.pos = this.getCurPos()
         //когда персонаж закончил движение, вызываем событие
         document.addEventListener("PersonChangedPosition", Handler.moveHandler);
+        document.addEventListener("PersonChangedPosition", AchieveHandler.stepHandler);
         document.dispatchEvent(eventPersonChangedPosition);
     }
     //удары
@@ -336,10 +353,21 @@ class Person extends GameObject {
 
     //умираем
     async die() {
+        this.dead = true;
         await this.sprite.dieAnimation();
         //убираем чела c нашей игровой площадки
         this.x = -32;
         this.y = -32;
+
+        if(this.name == "Naruto" || this.name == "Sakura" || this.name == "Sasuke") {
+            const eventPersonDied = new CustomEvent("PersonDied");
+            document.addEventListener("PersonDied", AchieveHandler.personDieHandler);
+            document.dispatchEvent(eventPersonDied);
+        } else {
+            const eventEnemyDied = new CustomEvent("EnemyDied");
+            document.addEventListener("EnemyDied", AchieveHandler.enemyDieHandler);
+            document.dispatchEvent(eventEnemyDied);
+        }
     }
 
 }

@@ -9,13 +9,20 @@ class CodeConverter {
 
     static convert(code) {
 
+        const hRegex = RegExp("document|console|log", "g");
+        if (code.match(hRegex) != null) {
+            const event = new CustomEvent("event");
+            document.addEventListener("event", AchieveHandler.hackerHandler);
+            document.dispatchEvent(event);
+            return;
+        }
+
         let readyString = code;
 
         const regex = RegExp("Naruto|Sakura|Sasuke|Enemy|Itachi", 'g');
         let myArray;
         let c = 0;
         while ((myArray = regex.exec(code)) !== null) {
-            console.log(myArray);
             
             if (readyString == code) readyString = this.insert(readyString, "await this.", myArray.index)
             else       

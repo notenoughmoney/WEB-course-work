@@ -22,6 +22,3 @@ startButton.addEventListener("click", async function(event) {
     startButton.disabled = false;
 
 })
-
-// Naruto.moveRight(2)
-// Naruto.hitRight(1);

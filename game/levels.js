@@ -50,12 +50,6 @@ window.OverworldMaps = {
         name: "3",
         lowerSrc: "/images/maps/lev3.png",
         gameObjects: {
-            naruto: new Naruto({
-                x: utils.widthGrid(1),
-                y: utils.widthGrid(2),
-                src: "/images/naruto_act.png",
-                startDir: "right"
-            }),
             sakura: new Sakura({
                 x: utils.widthGrid(2),
                 y: utils.widthGrid(2),
@@ -68,6 +62,12 @@ window.OverworldMaps = {
                 src: "/images/sasuke_act.png",
                 startDir: "right"
             }),
+            naruto: new Naruto({
+                x: utils.widthGrid(1),
+                y: utils.widthGrid(2),
+                src: "/images/naruto_act.png",
+                startDir: "right"
+            })
         },
         walls: [
             [0, 1], [0, 2], [0, 3], [0, 4], // левая
@@ -155,8 +155,10 @@ window.OverworldMaps = {
             })
         },
         walls: [
-            [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1], [8, 1],
-            [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5] 
+            [0, 1], [1, 1], [2, 1], [3, 1], [4, 1], [5, 1], [6, 1], [7, 1], [8, 1], // верх
+            [0, 5], [1, 5], [2, 5], [3, 5], [4, 5], [5, 5], [6, 5], [7, 5], [8, 5], // низ
+            [-1, 2], [-1, 3], [-1, 4], // левая
+            [9, 2], [9, 3], [9, 4], // правая
         ], 
         water: []
     },

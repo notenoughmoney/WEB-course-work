@@ -28,9 +28,9 @@ class Overworld {
 
     getEnemyCells() {
         return [
-            (this.Enemy1 == undefined) ? null : [this.Enemy1.x/32, this.Enemy1.y/32],
-            (this.Enemy2 == undefined) ? null : [this.Enemy2.x/32, this.Enemy2.y/32],
-            (this.Enemy3 == undefined) ? null : [this.Enemy3.x/32, this.Enemy3.y/32],
+            (this.Enemy1 == undefined || this.Enemy1.dead) ? null : [this.Enemy1.x/32, this.Enemy1.y/32],
+            (this.Enemy2 == undefined || this.Enemy2.dead) ? null : [this.Enemy2.x/32, this.Enemy2.y/32],
+            (this.Enemy3 == undefined || this.Enemy3.dead) ? null : [this.Enemy3.x/32, this.Enemy3.y/32],
             (this.Itachi == undefined) ? null : [this.Itachi.x/32, this.Itachi.y/32],
         ]
     }
@@ -55,7 +55,8 @@ class Overworld {
         if (this.Sasuke != undefined) this.Sasuke.spawnMovement();
         if (this.Itachi != undefined) {
             this.Itachi.setPos(utils.widthGrid(7), utils.widthGrid(2));
-            this.Itachi.moveLeft(2);
+            this.Itachi.moveLeft(1);
+            console.log("oops");
         }
     }
 
