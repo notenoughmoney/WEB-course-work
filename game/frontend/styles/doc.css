@@ -1,0 +1,20 @@
+.swal-custom{
+    width:850px;
+    height: 600px;
+}
+
+table td, table tr, table th {
+    border: 1px solid black;
+}
+table th {
+    background-color: burlywood;
+}
+
+table td {
+    text-align: left;
+    padding: 4px;
+}
+
+table {
+    width: 750px;
+}

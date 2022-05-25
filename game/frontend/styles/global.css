@@ -1,0 +1,138 @@
+html {
+    min-width: 1410px;
+    overflow: hidden;
+}
+
+body{
+    position: relative;
+    background: #FFC773;
+    margin: 0;
+}
+
+.header {
+    background-color: #d9d92b;
+    width: 100%;
+    height: 150px;
+    /* text-align: center; */
+    position: relative;
+    padding: 5px;
+}
+
+.header-login {
+    float: right;
+}
+
+.header-logo {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.doc {
+    vertical-align: bottom;
+    margin-top: 70px;
+}
+
+.bi.bi-question-circle:hover {
+    cursor: pointer;
+}
+
+.level-buttons {
+    background-color: #faffa2;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    position: relative;
+}
+
+.equalizer {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 203px;
+}
+
+.achievement-list {
+    background: #bfddd5;
+    float: left;
+    width: 25%;
+    height: 600px;
+    text-align: center;
+    padding: 10px;
+    overflow: auto;
+}
+
+.ach-item {
+    border: black solid;
+    border-radius: 10px;
+    display: flex;
+    padding: 5px;
+    margin: 5px;
+}
+
+.ach-item h5 {
+    vertical-align: middle;
+    margin: auto;
+}
+
+.ach-item-image {
+    border-radius: 8px;
+}
+
+.code-container {
+    background: #efefe3;
+    float: left;
+    width: 25%;
+    height: 600px;
+    text-align: center;
+    padding: 20px;
+}
+
+.code-area {
+    width: 100%;
+    height: 300px;
+    font-family: inherit;
+    font-weight: bold;
+}
+
+.start {
+    width: 50%;
+    background: rgb(120,4,121);
+    background: linear-gradient(90deg, rgba(120,4,121,1) 0%, rgba(43,115,159,1) 76%, rgba(153,0,194,1) 100%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+
+.game-container-outside {
+    background: #ab831f;
+    float: right;
+    width: 50%;
+    height: 600px;
+}
+
+.game-container {
+    position: relative;
+    width: calc(32px * 9);
+    height: calc(32px * 6);
+    margin: auto;
+    outline: 1px solid #fff;
+
+    transform: scale(2) translateY(50%);
+    image-rendering: pixelated;
+}
+
+.footer {
+    background: #6b5213;
+    width: 100%;
+	height: 130px;
+    top: 600px;
+    position: relative;
+    text-align: center;
+}

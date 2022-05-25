@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Naruto game</title>
+
+        <!-- Уведомления Sweet Alerts -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <!-- Мои стили -->
+        <link href="/game/frontend/styles/global.css" type="text/css" rel="stylesheet">
+        <link href="/game/frontend/styles/TextMessage.css" type="text/css" rel="stylesheet">
+        <link href="/game/frontend/styles/SceneTransition.css" type="text/css" rel="stylesheet">
+        <link href="/game/frontend/styles/doc.css" type="text/css" rel="stylesheet">
+
+        <!-- Favicon -->
+        <link type="image/x-icon" href="/game/frontend/images/n.png" rel="shortcut icon">
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        
+        <!-- Скрипт чтобы бегать по уровням -->
+        <script src="/game/frontend/setLevel.js"></script>
+    
+    </head>
+    <body>
+
+        <!-- 
+         ⣠⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣼⡟⠉⠉⠀⠀⠀⠀⢀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢿⣇⠀⠀⠀⠀⣠⣶⣿⠿⣿⣿⡿⣷⡀⠸⣿⣶⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠘⢿⣆⠀⣠⣾⣿⣿⣿⣶⣿⣿⣶⣿⠁⠀⣠⣿⡇⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⢛⣁⣤⣴⣿⠟⠁⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣿⣿⡟⠉⠉⠀⠀⠈⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⣿⣿⠁⠀⠀⠀⠀⠀⢻⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣾⣿⠇⠀⠀⠀⠀⠀⠀⠀⢿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠹⢿⠁⡀⠀⠀⠀⠀⠀⠀⠸⣿⣶⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+         -->
+
+        <div class="header">
+
+            <div class="header-login"></div>
+
+                <button id="fun" onclick="soundStart()" type="button" class="btn btn-secondary">
+                    <!-- Иконка нету звука -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-mute" viewBox="0 0 16 16">
+                        <path d="M6.717 3.55A.5.5 0 0 1 7 4v8a.5.5 0 0 1-.812.39L3.825 10.5H1.5A.5.5 0 0 1 1 10V6a.5.5 0 0 1 .5-.5h2.325l2.363-1.89a.5.5 0 0 1 .529-.06zM6 5.04 4.312 6.39A.5.5 0 0 1 4 6.5H2v3h2a.5.5 0 0 1 .312.11L6 10.96V5.04zm7.854.606a.5.5 0 0 1 0 .708L12.207 8l1.647 1.646a.5.5 0 0 1-.708.708L11.5 8.707l-1.646 1.647a.5.5 0 0 1-.708-.708L10.793 8 9.146 6.354a.5.5 0 1 1 .708-.708L11.5 7.293l1.646-1.647a.5.5 0 0 1 .708 0z"/>
+                    </svg>
+                    Выкл
+                </button>
+                <button id="sad" onclick="soundStop()" type="button" class="btn btn-dark">
+                    <!-- Иконка звука -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-volume-up" viewBox="0 0 16 16">
+                        <path d="M11.536 14.01A8.473 8.473 0 0 0 14.026 8a8.473 8.473 0 0 0-2.49-6.01l-.708.707A7.476 7.476 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303l.708.707z"/>
+                        <path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.483 5.483 0 0 1 11.025 8a5.483 5.483 0 0 1-1.61 3.89l.706.706z"/>
+                        <path d="M10.025 8a4.486 4.486 0 0 1-1.318 3.182L8 10.475A3.489 3.489 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.486 4.486 0 0 1 10.025 8zM7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12V4zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11z"/>
+                    </svg> 
+                    Вкл
+                </button>
+                
+                <div class="doc">
+                    <svg onclick="showDoc()" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                    </svg>
+                </div>
+
+            
+
+            <img class="header-logo" src="/game/frontend/images/header_logo.png" width="256" height="109">
+        </div>
+
+        <div class="level-buttons">
+            <div class="equalizer">
+                <h4>Уровни:</h4>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button id="l1" type="button" class="btn btn-dark" onclick="setLevel(1)">1</button>
+                    <button id="l2" type="button" class="btn btn-dark disabled" onclick="setLevel(2)">2</button>
+                    <button id="l3" type="button" class="btn btn-dark disabled" onclick="setLevel(3)">3</button>
+                    <button id="l4" type="button" class="btn btn-dark disabled" onclick="setLevel(4)">4</button>
+                    <button id="l5" type="button" class="btn btn-dark disabled" onclick="setLevel(5)">5</button>
+                    <button id="l6" type="button" class="btn btn-dark disabled" onclick="setLevel(6)">6</button>
+                </div>
+            </div>
+        </div>
+
+        <div>
+        <div class="achievement-list">
+            <h5>Твои достижения:</h5>
+
+        </div>
+
+        <div class="code-container">
+            <textarea class="code-area"></textarea>
+            <br>
+            <button class="start">Go!</button>
+        </div>
+
+        <div class="game-container-outside">
+            <div id="game-container" class="game-container">
+                <canvas class="game-canvas" width="320" height="224"></canvas>
+            </div>
+        </div>
+    </div>
+
+        <div class="footer">
+            Никакие права не защищены
+        </div>
+
+        
+        <script src="/game/backend/requests.js">        </script>
+        
+        <script src="/game/frontend/puller.js">         </script>
+        <script src="/game/frontend/doc.js">            </script>
+        <script src="/game/frontend/sound.js">          </script>
+        <script src="/game/frontend/utils.js">          </script>
+        <script src="/game/frontend/Overworld.js">      </script>
+        <script src="/game/frontend/Sprite.js">         </script>
+        <script src="/game/frontend/GameObject.js">     </script>
+        <script src="/game/frontend/OverworldMap.js">   </script>
+        <script src="/game/frontend/OverworldEvent.js"> </script>
+        <script src="/game/frontend/TextMessage.js">    </script>
+        <script src="/game/frontend/RevealingText.js">  </script>
+        <script src="/game/frontend/SceneTransition.js"></script>
+        <script src="/game/frontend/AchieveHandler.js"> </script>
+        <script src="/game/frontend/Handler.js">        </script>
+        <script src="/game/frontend/Person.js">         </script>
+        <script src="/game/frontend/Naruto.js">         </script>
+        <script src="/game/frontend/Sakura.js">         </script>
+        <script src="/game/frontend/Sasuke.js">         </script>
+        <script src="/game/frontend/Enemy.js">          </script>
+        <script src="/game/frontend/levels.js">         </script>
+        <script src="/game/frontend/CodeConverter.js">  </script>
+        <script src="/game/frontend/Init.js">           </script>
+        
+
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles/auth.css" media="screen" type="text/css" />
+	<link type="image/x-icon" href="/images/n.png" rel="shortcut icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="/game/backend/requests.js"></script>
+</head>
+<body>
+
+    <div id="login">
+        <form action="javascript:void(0);" method="get">
+            <fieldset class="clearfix">
+                <p>
+                    <span class="fontawesome-user"></span>
+                    <input class="username" type="text" value="Логин" onBlur="if(this.value == '') this.value = 'Логин'" onFocus="if(this.value == 'Логин') this.value = ''" required>
+                </p>
+                <p>
+                    <span class="fontawesome-lock"></span>
+                    <input class="password" type="password" value="Пароль" onBlur="if(this.value == '') this.value = 'Пароль'" onFocus="if(this.value == 'Пароль') this.value = ''"  required>
+                </p>
+                <p><input type="submit" value="ЗАРЕГИСТРИРОВАТЬСЯ" onclick="preRegister()"></p>
+            </fieldset>
+        </form>
+        <p>Уже есть аккаунт? &nbsp;&nbsp;
+            <a href="/game/frontend/auth.html">
+                Вход
+            </a>
+            <span class="fontawesome-arrow-right">
+            </span>
+        </p>
+    </div>
+</body>
+</html>
